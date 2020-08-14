@@ -1,18 +1,21 @@
-with open('word.in', 'r') as input:
-    n, k = [int(i) for i in input.readline().strip().split()]
-    words = input.readline().strip().split()
+import sys
 
-with open('word.out', 'w') as output:
-    l = len(words[0])
-    output.write(words[0])
-    for i in range(1, n):
-        if l + len(words[i]) > k:
-            output.write('\n')
-            l = len(words[i])
-        else:
-            output.write(' ')
-            l += len(words[i])
-        output.write(words[i])
+sys.stdin = open('word.in', 'r')
+sys.stdout = open('word.out', 'w')
+
+n, k = [int(i) for i in input().split()]
+words = input().split()
+
+l = len(words[0])
+sys.stdout.write(words[0])
+for i in range(1, n):
+    if l + len(words[i]) > k:
+        print()
+        l = len(words[i])
+    else:
+        sys.stdout.write(' ')
+        l += len(words[i])
+    sys.stdout.write(words[i])
 
     
         
