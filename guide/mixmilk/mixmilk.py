@@ -3,35 +3,29 @@ import sys
 sys.stdin = open('mixmilk.in', 'r')
 sys.stdout = open('mixmilk.out', 'w')
 
+def mix(bf, mf, bt, mt):
+    if mf + mt >= bt: 
+        mf = mf + mt - bt 
+        mt = bt 
+    else:
+        mt = mf + mt
+        mf = 0    
+    return mf, mt
+
 b1, m1 = [int(i) for i in input().split()]
 b2, m2 = [int(i) for i in input().split()]
 b3, m3 = [int(i) for i in input().split()]
 c = 0
 while True:
-    if m1 + m2 >= b2: 
-        m1 = m1 + m2 - b2 
-        m2 = b2 
-    else:
-        m2 = m1 + m2
-        m1 = 0      
+    m1, m2 = mix(b1, m1, b2, m2)  
     c += 1
     if c == 100:
         break   
-    if m2 + m3 >= b3:
-        m2 = m2 + m3 - b3 
-        m3 = b3 
-    else:
-        m3 = m2 + m3 
-        m2 = 0  
+    m2, m3 = mix(b2, m2, b3, m3) 
     c += 1
     if c == 100:
         break         
-    if m3 + m1 >= b1:
-        m3 = m3 + m1 - b1
-        m1 = b1 
-    else:
-        m1 = m3 + m1
-        m3 = 0
+    m3, m1 = mix(b3, m3, b1, m1) 
     c += 1
     if c == 100:
         break   
