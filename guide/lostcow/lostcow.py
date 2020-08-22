@@ -1,8 +1,9 @@
 import sys
 
-def main():
-    sys.stdin = open('lostcow.in', 'r')
-    sys.stdout = open('lostcow.out', 'w')
+
+def main(pname):
+    sys.stdin = open(pname + '.in', 'r')
+    sys.stdout = open(pname + '.out', 'w')
 
     x, y = [int(i) for i in input().split()]
     n = 0
@@ -18,5 +19,6 @@ def main():
     d -= abs(p - y)
     print(d)
 
+
 if __name__ == "__main__":
-    main()
+    main('lostcow')

@@ -1,39 +1,30 @@
+# Original code by Jerry G, and modified by Dazhi Jiao
+
 import sys
 
-def main():
-    sys.stdin = open('mixmilk.in', 'r')
-    sys.stdout = open('mixmilk.out', 'w')
 
-    def mix(bf, mf, bt, mt):
-        if mf + mt >= bt: 
-            mf = mf + mt - bt 
-            mt = bt 
-        else:
-            mt = mf + mt
-            mf = 0    
-        return mf, mt
+def mix(mf, bt, mt):
+    p = min(mf, bt - mt)
+    return mf - p, mt + p
 
-    b1, m1 = [int(i) for i in input().split()]
-    b2, m2 = [int(i) for i in input().split()]
-    b3, m3 = [int(i) for i in input().split()]
-    c = 0
-    while True:
-        m1, m2 = mix(b1, m1, b2, m2)  
-        c += 1
-        if c == 100:
-            break   
-        m2, m3 = mix(b2, m2, b3, m3) 
-        c += 1
-        if c == 100:
-            break         
-        m3, m1 = mix(b3, m3, b1, m1) 
-        c += 1
-        if c == 100:
-            break   
+
+def main(pname):
+    sys.stdin = open(pname + '.in', 'r')
+    sys.stdout = open(pname + '.out', 'w')
+
+    b1, m1 = map(int, input().split())
+    b2, m2 = map(int, input().split())
+    b3, m3 = map(int, input().split())
+    for i in range(33):
+        m1, m2 = mix(m1, b2, m2)
+        m2, m3 = mix(m2, b3, m3)
+        m3, m1 = mix(m3, b1, m1)
+    m1, m2 = mix(m1, b2, m2)
 
     print(m1)
     print(m2)
     print(m3)
 
+
 if __name__ == "__main__":
-    main()
+    main('mixmilk')
