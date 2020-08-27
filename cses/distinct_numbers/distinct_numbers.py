@@ -1,7 +1,7 @@
 
 def main(pname):
     n = int(input())
-    l = map(int, input().split())
+    l = [int(i) for i in input().split()]
     print(len(set(l)))
 
 
