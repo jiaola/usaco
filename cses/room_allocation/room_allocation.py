@@ -25,7 +25,7 @@ def main(pname):
                 c_r[c_n] = r_v.pop()
 
     stdout.write(str(max_rooms) + '\n')
-    stdout.write(' '.join([str(c_r[i]) for i in range(n)]) + '\n')
+    stdout.write(' '.join([str(c_r[i]) for i in range(n)]))
 
 
 if __name__ == "__main__":
