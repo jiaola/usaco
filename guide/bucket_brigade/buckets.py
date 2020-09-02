@@ -2,7 +2,7 @@ import sys
 
 
 def main(pname):
-    sys.stdin = open(pname + 'in', 'r')
+    sys.stdin = open(pname + '.in', 'r')
     sys.stdout = open(pname + '.out', 'w')
 
     for i in range(10):
