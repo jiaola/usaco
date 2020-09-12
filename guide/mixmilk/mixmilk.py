@@ -1,30 +1,29 @@
-# Original code by Jerry G, and modified by Dazhi Jiao
-
 import sys
 
+sys.stdin = open('mixmilk.in', 'r')
+sys.stdout = open('mixmilk.out', 'w')
 
-def mix(mf, bt, mt):
-    p = min(mf, bt - mt)
-    return mf - p, mt + p
+c1, m1 = map(int, input().split())
+c2, m2 = map(int, input().split())
+c3, m3 = map(int, input().split())
 
+for i in range(33):
+    p = min(m1, c2 - m2)
+    m2 = m2 + p
+    m1 = m1 - p
 
-def main(pname):
-    sys.stdin = open(pname + '.in', 'r')
-    sys.stdout = open(pname + '.out', 'w')
+    p = min(m2, c3 - m3)
+    m3 = m3 + p
+    m2 = m2 - p
 
-    b1, m1 = map(int, input().split())
-    b2, m2 = map(int, input().split())
-    b3, m3 = map(int, input().split())
-    for i in range(33):
-        m1, m2 = mix(m1, b2, m2)
-        m2, m3 = mix(m2, b3, m3)
-        m3, m1 = mix(m3, b1, m1)
-    m1, m2 = mix(m1, b2, m2)
+    p = min(m3, c1 - m1)
+    m1 = m1 + p
+    m3 = m3 - p
 
-    print(m1)
-    print(m2)
-    print(m3)
+p = min(m1, c2 - m2)
+m1 = m1 - p
+m2 = m2 + p
 
-
-if __name__ == "__main__":
-    main('mixmilk')
+print(str(m1))
+print(str(m2))
+print(str(m3))
