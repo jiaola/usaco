@@ -13,6 +13,8 @@ def main(pname):
             n = x * i + y * j
             if n <= m:
                 s = max(s, n)
+            else:
+                break
     print(s)
 
 
