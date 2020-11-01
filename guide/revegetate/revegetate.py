@@ -2,8 +2,8 @@ import sys
 
 
 def main(pname):
-    sys.stdin = open('revegetate.in', 'r')
-    sys.stdout = open('revegetate.out', 'w')
+    sys.stdin = open(pname + '.in', 'r')
+    sys.stdout = open(pname + '.out', 'w')
 
     n, m = map(int, input().split())
 
