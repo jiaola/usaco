@@ -11,7 +11,8 @@ def check_pair(r1, r2, a, b):
     except ValueError:
         ind_b = -1
     if a > -1 and b > -1:
-        if not set(r1[ind_a+1:]).isdisjoint(r2[:ind_b]):
+        r = r1[ind_a+1:] + r2[:ind_b]
+        if len(set(r)) < len(r):
             return True
     return False
 
