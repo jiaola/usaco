@@ -7,9 +7,9 @@ def main(pname):
 
     line = []
     n = int(input())
-    b = -1
     for i in range(n):
         line.append(int(input()))
+
     b = -1
 
     left = True
@@ -38,6 +38,10 @@ def main(pname):
                 continue
             nums.append(line[i])
     print(len(set(nums)))
+    # an easier method
+    # line2 = sorted(line)
+    # total = len([i for i in range(n) if line[i] != line2[i]])
+    # print(total - 1)
 
 
 if __name__ == "__main__":
