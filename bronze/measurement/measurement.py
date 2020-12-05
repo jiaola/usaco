@@ -17,6 +17,7 @@ def main(pname):
     cows = ['Bessie', 'Elsie', 'Mildred']
     highest = ['Bessie', 'Elsie', 'Mildred']
     c = 0
+    # 7 Bessie -3
     for i in r:
         cow = i[1]
         change = i[2]
