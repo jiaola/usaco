@@ -12,7 +12,7 @@ def main(pname):
         xi, yi = [int(j) for j in input().split()]
         x.append(xi)
         y.append(yi)
-    min_max = b
+    min_max = n
     for a in x:
         for b in y:
             zones = [0] * 4
