@@ -2,17 +2,17 @@ import sys
 
 
 def check(n, i, k, shakes):
-    cows = [0] * n
-    cows[i] = 1
+    cows = [-1] * n
+    cows[i] = 0
     for shake in shakes:
-        if (cows[shake[1]] == 0 or cows[shake[1]] > k) and (cows[shake[2]] == 0 or cows[shake[2]] > k):
+        if (cows[shake[1]] == -1 or cows[shake[1]] >= k) and (cows[shake[2]] == -1 or cows[shake[2]] >= k):
             continue
         else:
             cows[shake[1]] += 1
             cows[shake[2]] += 1
     result = [0] * n
     for i in range(n):
-        if cows[i] > 0:
+        if cows[i] >= 0:
             result[i] = 1
     return result
 
