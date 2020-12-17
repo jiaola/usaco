@@ -1,7 +1,6 @@
 import sys
 from math import ceil, floor
 
-
 def main(pname):
     sys.stdin = open(pname + '.in', 'r')
     sys.stdout = open(pname + '.out', 'w')
