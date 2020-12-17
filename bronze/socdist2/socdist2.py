@@ -1,38 +1,40 @@
 import sys
 
 
-def main(pname):
-    sys.stdin = open(pname + '.in', 'r')
-    sys.stdout = open(pname + '.out', 'w')
-
+def main(file):
+    sys.stdin = open(file + '.in', 'r')
+    sys.stdout = open(file + '.out', 'w')
     n = int(input())
-    cows = []
+    d = dict()
     for i in range(n):
-        j, k = [int(i) for i in input().split()]
-        cows.append((j, k))
-    cows.sort()
+        a = input().split()
+        d[int(a[0])] = int(a[1])
+    d = list(sorted(d.items()))
+    mindist = 10 ** 7
+    for i in d:
+        if i[1] == 0:
+            for j in d:
+                if i != j:
+                    if j[1] == 1:
+                        mindist = min(abs(j[0] - i[0]), mindist)
+    r = mindist - 1
+    for i in d:
+        if i[1] == 1:
+            prev = i[0]
+            lst = [[prev]]
+            for j in d:
+                if j[0] == prev:
+                    continue
+                if j[1] == 0:
+                    continue
+                if j[0] - prev <= r:
+                    lst[-1].append(j[0])
+                else:
+                    lst.append([j[0]])
+                prev = j[0]
+            print(len(lst))
+            break
 
-    min_dist = 10**6
-    for i in range(n):
-        if cows[i][1] == 0:
-            if i > 0 and cows[i-1][1] == 1:
-                min_dist = min(min_dist, cows[i][0] - cows[i-1][0])
-            elif i < n-1 and cows[i+1][1] == 1:
-                min_dist = min(min_dist, cows[i+1][0] - cows[i][0])
-    count = 0
 
-    last_x = -1
-    for i in range(n):
-        if cows[i][1] == 1:
-            if last_x == -1:
-                count += 1
-            else:
-                if cows[i][0] - last_x >= min_dist:
-                    count += 1
-            last_x = cows[i][0]
-
-    print(count)
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main('socdist2')
