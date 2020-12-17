@@ -54,30 +54,5 @@ def main(pname):
     print(len(start), min_k, max_k)
 
 
-    # # shakes with one infected
-    # one_shakes = []
-    # none_shakes = []
-    # both_shakes = []
-    # for i in range(n):
-    #     x, y, z = [int(j) for j in input().split()]
-    #     if sick[y-1] and sick[z-1]:
-    #         both_shakes.append([x, y, z])
-    #     elif sick[y-1] or sick[z-1]:
-    #         one_shakes.append([x, y, z])
-    #     else:
-    #         none_shakes.append([x, y, z])
-
-
-
-    # shakes with no infected
-
-
-    # find the smallest
-    # print(graph)
-    #
-    # for i in range(n):
-    #     for k in range(n+1):
-    #         check(i)
-
 if __name__ == "__main__":
     main('tracing')
