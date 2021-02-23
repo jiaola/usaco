@@ -1,11 +1,18 @@
 import sys
 
 
-def main(pname):
+def main():
     lst = list(input())
     n = len(lst)
-    lst_copy = lst.copy()
-    lst_copy.sort()
+    nl = nm = ns = 0
+    for i in lst:
+        if i == 'L':
+            nl += 1
+        elif i == 'M':
+            nm += 1
+        else:
+            ns += 1
+    lst_copy = 'L' * nl + 'M' * nm + 'S' * ns
 
     swaps = {
         "L": {"M": 0, "S": 0},
@@ -17,13 +24,12 @@ def main(pname):
         if lst_copy[i] != lst[i]:
             swaps[lst_copy[i]][lst[i]] += 1
             total += 1
-    swap_lm = min(swaps["L"]["M"], swaps["M"]["L"])
-    swap_ms = min(swaps["M"]["S"], swaps["S"]["M"])
-    swap_sl = min(swaps["L"]["S"], swaps["S"]["L"])
-    sc = swap_lm + swap_ms + swap_sl
-    cycles = total - sc * 2
-    print(cycles // 3 * 2 + sc)
+    swap_cnt = 0
+    for pair in [('L', 'M'), ('M', 'S'), ('S', 'L')]:
+        swap_cnt += min(swaps[pair[0]][pair[1]], swaps[pair[1]][pair[0]])
+    cycles = total - swap_cnt * 2
+    print(cycles // 3 * 2 + swap_cnt)
 
 
 if __name__ == '__main__':
-    main('prob4')
+    main()
