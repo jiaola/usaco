@@ -1,5 +1,22 @@
 import sys
 
+# dict = {
+#     'MI': {
+#         'FL': 5
+#     },
+#     'FL': {
+#         'MI': 2
+#     }
+# }
+#
+# MI, FL <-> FL, MI  = 5 * 2 = 10
+
+# dict = {
+#     'MIFL': 5,
+#     'FLMI': 2
+# }
+#
+#
 
 def main(pname):
     sys.stdin = open(pname + '.in', 'r')
@@ -9,19 +26,17 @@ def main(pname):
     city_state = {}
     for i in range(n):
         city, state = input().split()
-        if city[:2] not in city_state:
-            city_state[city[:2]] = {}
-        if state not in city_state[city[:2]]:
-            city_state[city[:2]][state] = 0
-        city_state[city[:2]][state] += 1
+        cs = city[:2] + state
+        if cs not in city_state:
+            city_state[cs] = 0
+        city_state[cs] += 1
     ans = 0
-    for city in city_state:
-        for state in city_state[city]:
-            if city == state:
-                continue
-            if state in city_state:
-                if city in city_state[state]:
-                    ans += city_state[city][state] * city_state[state][city]
+    for cs1 in city_state:
+        if cs1[2:] == cs1[:2]:
+            continue
+        cs2 = cs1[2:] + cs1[:2]
+        if cs2 in city_state:
+            ans += city_state[cs1] * city_state[cs2]
     print(ans // 2)
 
 
